@@ -1,23 +1,24 @@
+@import 'variables';
 nav
 {
-background-color: #FFEEF4 !important;
-color: #505050 !important;
+background-color: $primary !important;
+color: $secondary !important;
 font-weight: bold !important;
 }
 
 .letras {
-    width: 25% !important; 
+    // width: 15em !important; 
     height: auto;
 }
 
 .dropdown-menu {
     background-color: white !important;
-    color: #505050 !important;
+    color: $secondary !important;
 }
 
 .dropdown-item {
     &:hover{
-        background-color: #FFEEF4 !important;
+        background-color: $primary !important;
     }
 }
 
