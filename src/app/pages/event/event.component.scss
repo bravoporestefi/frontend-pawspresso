@@ -1,0 +1,22 @@
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.img-fluid {
+    transition: transform 0.2s;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+
+
+.container {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
