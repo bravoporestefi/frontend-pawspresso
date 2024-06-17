@@ -1,0 +1,25 @@
+nav
+{
+background-color: #FFEEF4 !important;
+color: #505050 !important;
+font-weight: bold !important;
+}
+
+.letras {
+    width: 25% !important; 
+    height: auto;
+}
+
+.dropdown-menu {
+    background-color: white !important;
+    color: #505050 !important;
+}
+
+.dropdown-item {
+    &:hover{
+        background-color: #FFEEF4 !important;
+    }
+}
+
+
+
