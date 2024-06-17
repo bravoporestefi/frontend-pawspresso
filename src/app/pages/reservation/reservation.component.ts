@@ -2,11 +2,19 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-reservation',
-  standalone: true,
-  imports: [],
   templateUrl: './reservation.component.html',
-  styleUrl: './reservation.component.scss'
+  styleUrls: ['./reservation.component.scss']
 })
 export class ReservationComponent {
+  toggleProductList(event: Event): void {
+    const typeElement = event.target as HTMLSelectElement;
+    const productList = document.getElementById('productList') as HTMLDivElement;
+    const eventList = document.getElementById('eventList') as HTMLDivElement;
 
+    if (typeElement && productList && eventList) {
+      const type = typeElement.value;
+      productList.style.display = (type === 'producto') ? 'block' : 'none';
+      eventList.style.display = (type === 'evento') ? 'block' : 'none';
+    }
+  }
 }

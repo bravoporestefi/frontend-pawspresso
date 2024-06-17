@@ -1,1 +1,34 @@
-<p>reservation works!</p>
+<div>
+    <img src="assets/favicon.png">
+    <form action="/reserve" method="post">
+        <label for="datetime">Fecha y Hora:</label><br>
+        <input type="datetime-local" id="datetime" name="datetime" required><br><br>
+
+        <label for="type">Tipo:</label><br>
+        <select id="type" name="type" (change)="toggleProductList($event)" required ngModel>
+            <option value="cita">Cita</option>
+            <option value="evento">Evento</option>
+            <option value="producto">Producto</option>
+        </select><br><br>
+
+        <div id="productList" style="display: none;">
+            <label for="product">Seleccionar Producto:</label><br>
+            <select id="product" name="product" ngModel>
+                <option value="producto1">Producto 1</option>
+                <option value="producto2">Producto 2</option>
+                <option value="producto3">Producto 3</option>
+            </select><br><br>
+        </div>
+
+        <div id="eventList" style="display: none;">
+            <label for="event">Seleccionar Evento:</label><br>
+            <select id="event" name="event" ngModel>
+                <option value="evento1">Evento 1</option>
+                <option value="evento2">Evento 2</option>
+                <option value="evento3">Evento 3</option>
+            </select><br><br>
+        </div>
+
+        <button type="submit">Reservar</button>
+    </form>
+</div>
