@@ -18,6 +18,8 @@ export class SignupComponent {
   passwordMismatch: boolean = false;
   emailExists: boolean = false;
   phoneNumberExists: boolean = false;
+  formError: boolean = false;
+  formErrorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -40,21 +42,21 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.signupForm.valid && !this.passwordMismatch) {
-      const { password_confirmation, ...userData } = this.signupForm.value;
+      const userData = this.signupForm.value;
       this.authService.register(userData).subscribe(
         response => {
           console.log('User registered successfully', response);
           this.emailExists = false;
           this.phoneNumberExists = false;
+          this.formError = false;
           this.router.navigate(['/login']);
         },
         error => {
+          console.log(userData);
           console.error('Registration error', error);
-          if (error.error.message.includes('email')) {
-            this.emailExists = true;
-          }
-          if (error.error.message.includes('phone_number')) {
-            this.phoneNumberExists = true;
+          if (error.status === 422) {
+            this.formError = true;
+            this.formErrorMessage = 'El correo electrónico o el teléfono ya existen';
           }
         }
       );

@@ -35,9 +35,7 @@
               @if (signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)) {
                 <div class="text-danger">Introduce un correo válido</div>
               }
-              @if (emailExists) {
-                <div class="text-danger">El correo electrónico ya existe</div>
-              }
+
             </div>
             <div class="form-floating mb-3">
               <input type="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
@@ -57,6 +55,11 @@
               <button type="submit" class="btn btn-primary btn-lg" [disabled]="signupForm.invalid || passwordMismatch">Registrar</button>
             </div>
           </form>
+          @if (formError) {
+            <div class="text-danger mt-3">
+              {{ formErrorMessage }}
+            </div>
+          }
           <div class="text-center mt-3">
             ¿Ya tienes una cuenta? <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
           </div>
