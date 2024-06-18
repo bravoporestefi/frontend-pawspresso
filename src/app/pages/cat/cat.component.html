@@ -21,67 +21,18 @@
       dando la oportunidad a otros de ser visibles de cara a una adopción. ¡Echa un vistazo!</p>
   </div>
   <div class="row row-cols-1 row-cols-md-3 mx-5 g-4">
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/amarantha.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Amarantha</h5>
-          <p class="card-text">Amarantha es una gata elegante y tranquila con ojos tan brillantes como su nombre. Su
-            pelaje suave y sedoso invita a acariciarla mientras se acurruca a tu lado, brindándote paz y compañía.</p>
+    @if (cats) {
+      @for (cat of cats; track cat) {
+        <div class="col">
+          <div class="card h-100">
+            <img src="http://127.0.0.1:8000/storage/{{cat.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{cat.name}}</h5>
+              <p class="card-text">{{cat.description}}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/apolo.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Apolo</h5>
-          <p class="card-text">Apolo es un gato juguetón y encantador, con un corazón lleno de travesuras y ternura. Le
-            encanta perseguir juguetes y acurrucarse en el regazo después de un día de juegos.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/azucena.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Azucena</h5>
-          <p class="card-text">Es una exploradora nata, siempre curiosa y lista para descubrir nuevos rincones del café.
-            Con su energía juguetona y su espíritu aventurero, Azucena trae alegría y diversión a cada día.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/Chileno.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Chileno</h5>
-          <p class="card-text">Chileno es un gato valiente y protector, siempre dispuesto a cuidar de su hogar. Con su
-            carácter fuerte y su lealtad inquebrantable, Simba se convierte en tu guardián y
-            amigo fiel.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/heidi.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Heidi</h5>
-          <p class="card-text">Heidi es una gata judgona y serena, que parece realeza felina. Su porte elegante y su
-            carácter tranquilo la convierten en una compañía perfecta para momentos de relajación.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="assets/penelope.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Penelope</h5>
-          <p class="card-text">Penelope es una gata dulce y afectuosa a la vez que tímida. Con sus suaves maullidos y su
-            mirada tierna, sabe cómo derretir el corazón de cualquiera.</p>
-        </div>
-      </div>
-    </div>
+      }
+    }
   </div>
 </body>
