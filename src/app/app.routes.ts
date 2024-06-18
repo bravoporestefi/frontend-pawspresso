@@ -14,12 +14,12 @@ export const routes: Routes = [
     { path: 'cat', component: CatComponent },
     { path: 'product', component: ProductComponent },
     { path: 'ppeople', component: PpeopleComponent },
-    { path: 'pcat', component: PcatComponent},
-    { path: 'event', component: EventComponent},
-    { path: 'reservation', component: ReservationComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'signup', component: SignupComponent},
-    { path: '**', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'pcat', component: PcatComponent },
+    { path: 'event', component: EventComponent },
+    { path: 'reservation', component: ReservationComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];
 

@@ -1,5 +1,5 @@
 <footer class="bg-dark text-white p-5 align-items-end mt-5">
-    <div class="container d-flex justify-content-center align-items-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
         <div class="row">
             <!-- Horarios -->
             <div class="col-md-4 mt-3">
@@ -26,5 +26,10 @@
                 </iframe>
             </div>
         </div>
+        @if (this.authService.isLoggedIn()) {
+            <div class="row">
+                <button class="btn btn-outline-primary" (click)="logOut()">Cerrar Sesión</button>
+            </div>
+        }
     </div>
 </footer>
