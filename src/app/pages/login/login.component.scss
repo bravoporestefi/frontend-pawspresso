@@ -30,6 +30,10 @@
         color: darken($primary, 30%);
     }
   }
+  .text-danger {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
   
   @media (max-width: 767.98px) { // Bootstrap's 'md' breakpoint
     .login-image {
