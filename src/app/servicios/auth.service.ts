@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,8 +15,6 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   private hasToken(): boolean {
-    console.log(localStorage.getItem('token'));
-
     return !!localStorage.getItem('token');
   }
   register(user: any): Observable<any> {
@@ -43,22 +41,12 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/user`, { headers });
   }
 
-  getUserId(): number | null {
-    const user = localStorage.getItem('user');
-    if (user && user !== 'undefined') {
-      try {
-        const parsedUser = JSON.parse(user);
-        return parsedUser?.id || null;
-      } catch (e) {
-        console.error('Error parsing user from localStorage', e);
-        return null;
-      }
-    } else {
-      console.error('No user found or user is invalid in localStorage');
-      return 1;
-    }
+  getUserId(): Observable<number | null> {
+    return this.getUser().pipe(
+      map(user => user?.id || null),
+      catchError(() => of(null))
+    );
   }
-
   logout(): void {
     const token = localStorage.getItem('token');
     if (token) {

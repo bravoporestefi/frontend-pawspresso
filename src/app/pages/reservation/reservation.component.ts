@@ -53,27 +53,29 @@ export class ReservationComponent implements OnInit {
 
   onSubmit() {
     if (this.reservationForm.valid) {
-      const userId = this.authService.getUserId();
-      if (userId) {
-        const reservationData = { ...this.reservationForm.value, user_id: userId };
-        this.reservationService.createReservation(reservationData).subscribe(
-          response => {
-            console.log('Reservation created successfully', response);
-            this.formError = false;
-            this.router.navigate(['/home']);
-          },
-          error => {
-            console.error('Reservation error', error);
-            this.formError = true;
-            this.formErrorMessage = 'Error al crear la reserva. Inténtalo de nuevo.';
-          }
-        );
-      } else {
-        this.formError = true;
-        this.formErrorMessage = 'No se pudo obtener el ID del usuario. Inténtalo de nuevo.';
-      }
+      this.authService.getUserId().subscribe(userId => {
+        if (userId) {
+          const reservationData = { ...this.reservationForm.value, user_id: userId };
+          this.reservationService.createReservation(reservationData).subscribe(
+            response => {
+              console.log('Reservation created successfully', response);
+              this.formError = false;
+              this.router.navigate(['/home']);
+            },
+            error => {
+              console.error('Reservation error', error);
+              this.formError = true;
+              this.formErrorMessage = 'Error al crear la reserva. Inténtalo de nuevo.';
+            }
+          );
+        } else {
+          this.formError = true;
+          this.formErrorMessage = 'No se pudo obtener el ID del usuario. Inténtalo de nuevo.';
+        }
+      });
     }
   }
+
 
 
 }
