@@ -22,9 +22,9 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    // if (this.authService.isLoggedIn()) {
-    //   this.router.navigate(['/reservation']);
-    // }
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/reservation']);
+    }
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
