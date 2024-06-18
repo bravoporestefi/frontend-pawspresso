@@ -57,6 +57,9 @@
   @for (product of products; track product) {
     @if (product.type == 'comida') {
       <div class="card" style="width: 18rem;">
+        @if (isAdmin) {
+          <button class="btn btn-close position-absolute top-0 end-0 m-1" (click)="deleteProduct(product.id)"></button>
+        }
         <img src="http://127.0.0.1:8000/storage/{{product.image}}" class="card-img-top img-fluid h-100 object-fit-contain" loading="lazy" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
@@ -75,6 +78,9 @@
   @for (product of products; track product) {
     @if (product.type == 'souvenir') {
       <div class="card" style="width: 18rem;">
+        @if (isAdmin) {
+          <button class="btn btn-close position-absolute top-0 end-0 m-1" (click)="deleteProduct(product.id)"></button>
+        }
         <img src="http://127.0.0.1:8000/storage/{{product.image}}" class="card-img-top img-fluid h-100 object-fit-contain" loading="lazy" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
