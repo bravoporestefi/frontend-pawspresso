@@ -26,9 +26,9 @@ export class SignupComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    // if (this.authService.isLoggedIn()) {
-    //   this.router.navigate(['/reservation']);
-    // }
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/reservation']);
+    }
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],

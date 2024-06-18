@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,10 +15,8 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   private hasToken(): boolean {
-    console.log(localStorage.getItem('token'))
     return !!localStorage.getItem('token');
   }
-
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
@@ -26,6 +25,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
         this.isLoggedInSubject.next(true);
         this.router.navigate(['/home']);
       })
@@ -41,6 +41,12 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/user`, { headers });
   }
 
+  getUserId(): Observable<number | null> {
+    return this.getUser().pipe(
+      map(user => user?.id || null),
+      catchError(() => of(null))
+    );
+  }
   logout(): void {
     const token = localStorage.getItem('token');
     if (token) {
@@ -48,6 +54,7 @@ export class AuthService {
       this.http.post(`${this.apiUrl}/logout`, {}, { headers }).subscribe(
         () => {
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
           this.isLoggedInSubject.next(false);
           this.router.navigate(['/login']);
         },
@@ -57,6 +64,7 @@ export class AuthService {
       );
     } else {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       this.isLoggedInSubject.next(false);
       this.router.navigate(['/login']);
     }
