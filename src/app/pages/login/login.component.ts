@@ -37,7 +37,7 @@ export class LoginComponent {
         response => {
           console.log('User logged in successfully', response);
           this.loginError = false;
-          this.router.navigate(['/']);
+          this.router.navigate(['/reservation']);
         },
         error => {
           console.error('Login error', error);
