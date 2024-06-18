@@ -49,66 +49,40 @@
     </p>
 </div>
 <!-- Productos -->
+ @if (products) {
  <br>
-<h2>Alimentación</h2>
+<h2 class="ms-3">Alimentación</h2>
 <br>
-<div class="d-flex justify-content-around">
-    <div class="card" style="width: 18rem;">
-        <img src="assets/cafe_personas.webp" class="card-img-top" alt="...">
+<div class="d-flex flex-wrap gap-5 justify-content-around">
+  @for (product of products; track product) {
+    @if (product.type == 'comida') {
+      <div class="card" style="width: 18rem;">
+        <img src="http://127.0.0.1:8000/storage/{{product.image}}" class="card-img-top img-fluid h-100 object-fit-contain" loading="lazy" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Café Colombiano</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
             <a routerLink="/login" class="btn btn-primary">Reservar</a>
         </div>
     </div>
-    <div class="card" style="width: 18rem;">
-        <img src="assets/galletas.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Galletas Orgánicas</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a routerLink="/login" class="btn btn-primary">Reservar</a>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-        <img src="assets/tarta.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Trta de Merengue</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a routerLink="/login" class="btn btn-primary">Reservar</a>
-        </div>
-    </div>
+    }
+  }
 </div>
 <br>
-<h2>Souvenirs</h2>
+<h2 class="ms-3">Souvenirs</h2>
 <br>
-<div class="d-flex justify-content-around">
-    <div class="card" style="width: 18rem;">
-        <img src="assets/camiseta_gato.webp" class="card-img-top" alt="...">
+<div class="d-flex flex-wrap gap-5 justify-content-around">
+  @for (product of products; track product) {
+    @if (product.type == 'souvenir') {
+      <div class="card" style="width: 18rem;">
+        <img src="http://127.0.0.1:8000/storage/{{product.image}}" class="card-img-top img-fluid h-100 object-fit-contain" loading="lazy" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Camiseta</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
             <a routerLink="/login" class="btn btn-primary">Reservar</a>
         </div>
     </div>
-    <div class="card" style="width: 18rem;">
-        <img src="assets/taza_souvenir.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Taza</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a routerLink="/login" class="btn btn-primary">Reservar</a>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-        <img src="assets/orejas_gato.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Diadema Orejas</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a routerLink="/login" class="btn btn-primary">Reservar</a>
-        </div>
-    </div>
+    }
+  }
+</div>
+ }
+    
