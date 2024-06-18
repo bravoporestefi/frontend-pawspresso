@@ -8,8 +8,10 @@ import { EventComponent } from './pages/event/event.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { CreateComponent } from './pages/create/create.component';
 
 export const routes: Routes = [
+    { path: 'create', component: CreateComponent },
     { path: 'home', component: HomeComponent },
     { path: 'cat', component: CatComponent },
     { path: 'product', component: ProductComponent },
@@ -20,7 +22,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
-
 ];
 
 
