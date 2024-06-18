@@ -18,4 +18,10 @@ export class ProductsService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(`${this.url}/products/${productId}`, { headers });
   }
+  createProduct(product: FormData) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.url}/products`, product, { headers });
+  }
+
 }
