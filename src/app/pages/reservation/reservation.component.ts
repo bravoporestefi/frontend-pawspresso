@@ -82,7 +82,7 @@ export class ReservationComponent implements OnInit {
             response => {
               console.log('Reservation created successfully', response);
               this.formError = false;
-              this.router.navigate(['/home']);
+              this.router.navigate(['/reservationconfirmation']);
             },
             error => {
               console.error('Reservation error', error);

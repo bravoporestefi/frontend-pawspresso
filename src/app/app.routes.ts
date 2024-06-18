@@ -8,6 +8,7 @@ import { EventComponent } from './pages/event/event.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { ReservationConfirmationComponent } from './pages/reservationconfirmation/reservationconfirmation.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'pcat', component: PcatComponent },
     { path: 'event', component: EventComponent },
     { path: 'reservation', component: ReservationComponent },
+    { path: 'reservationconfirmation', component: ReservationConfirmationComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
