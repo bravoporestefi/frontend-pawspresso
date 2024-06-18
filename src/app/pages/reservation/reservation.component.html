@@ -1,65 +1,60 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="d-flex shadow-sm border-0 rounded-lg reservation-container">
-          <div class="w-100 p-4 reservation-form">
-            <h3 class="card-title text-center mb-4">Reserva</h3>
-            <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
-              <div class="form-floating mb-3">
-                <input type="datetime-local" id="date" formControlName="date" class="form-control" placeholder="Fecha y Hora" required>
-                <label for="datetime">Fecha y Hora</label>
-                @if (reservationForm.controls['date'].invalid && (reservationForm.controls['date'].dirty || reservationForm.controls['date'].touched)) {
-                  <div class="text-danger">La fecha y hora son obligatorias</div>
-                }
-              </div>
-              <div class="form-floating mb-3">
-                <select id="type" formControlName="type" class="form-select" required>
-                  <option value="" disabled selected>Seleccionar Tipo</option>
-                  <option value="visit">Cita</option>
-                  <option value="event">Evento</option>
-                  <option value="product">Producto</option>
-                </select>
-                <label for="type">Tipo</label>
-                @if (reservationForm.controls['type'].invalid && (reservationForm.controls['type'].dirty || reservationForm.controls['type'].touched)) {
-                  <div class="text-danger">El tipo es obligatorio</div>
-                }
-              </div>
-              @if (showProductList) {
-                <div>
-                  <div class="form-floating mb-3">
-                    <select id="product" formControlName="product" class="form-select">
-                      <option value="" disabled selected>Seleccionar Producto</option>
-                      <option value="producto1">Producto 1</option>
-                      <option value="producto2">Producto 2</option>
-                      <option value="producto3">Producto 3</option>
-                    </select>
-                    <label for="product">Seleccionar Producto</label>
-                  </div>
-                </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="d-flex shadow-sm border-0 rounded-lg reservation-container">
+        <div class="w-100 p-4 reservation-form">
+          <h3 class="card-title text-center mb-4">Reserva</h3>
+          <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+            <div class="form-floating mb-3">
+              <input type="datetime-local" id="date" formControlName="date" class="form-control" placeholder="Fecha y Hora" required>
+              <label for="date">Fecha y Hora</label>
+              @if (reservationForm.controls['date'].invalid && (reservationForm.controls['date'].dirty || reservationForm.controls['date'].touched)) {
+                <div class="text-danger">La fecha y hora son obligatorias</div>
               }
-              @if (showEventList) {
-                <div>
-                  <div class="form-floating mb-3">
-                    <select id="event" formControlName="event" class="form-select">
-                      <option value="" disabled selected>Seleccionar Evento</option>
-                      <option value="evento1">Evento 1</option>
-                      <option value="evento2">Evento 2</option>
-                      <option value="evento3">Evento 3</option>
-                    </select>
-                    <label for="event">Seleccionar Evento</label>
-                  </div>
-                </div>
+            </div>
+            <div class="form-floating mb-3">
+              <select id="type" formControlName="type" class="form-select" required>
+                <option value="" disabled selected>Seleccionar Tipo</option>
+                <option value="cita">Cita</option>
+                <option value="event">Evento</option>
+                <option value="product">Producto</option>
+              </select>
+              <label for="type">Tipo</label>
+              @if (reservationForm.controls['type'].invalid && (reservationForm.controls['type'].dirty || reservationForm.controls['type'].touched)) {
+                <div class="text-danger">El tipo es obligatorio</div>
               }
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg" [disabled]="reservationForm.invalid">Reservar</button>
+            </div>
+            @if (showProductList) {
+              <div>
+                <div class="form-floating mb-3">
+                  <select id="product" formControlName="product" class="form-select">
+                    <option value="" disabled selected>Seleccionar Producto</option>
+                    <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+                  </select>
+                  <label for="product">Seleccionar Producto</label>
+                </div>
               </div>
-            </form>
-            @if (formError) {
-              <div class="text-danger mt-3">{{ formErrorMessage }}</div>
             }
-          </div>
+            @if (showEventList) {
+              <div>
+                <div class="form-floating mb-3">
+                  <select id="event" formControlName="event" class="form-select">
+                    <option value="" disabled selected>Seleccionar Evento</option>
+                    <option *ngFor="let event of events" [value]="event.id">{{ event.name }}</option>
+                  </select>
+                  <label for="event">Seleccionar Evento</label>
+                </div>
+              </div>
+            }
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg" [disabled]="reservationForm.invalid">Reservar</button>
+            </div>
+          </form>
+          @if (formError) {
+            <div class="text-danger mt-3">{{ formErrorMessage }}</div>
+          }
         </div>
       </div>
     </div>
   </div>
-  
+</div>

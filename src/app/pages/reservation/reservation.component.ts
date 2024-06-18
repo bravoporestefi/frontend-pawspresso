@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../servicios/auth.service';
 import { ReservationService } from '../../servicios/reservation.service';
+import { ProductsService } from '../../servicios/products.service';
+import { EventsService } from '../../servicios/events.service';
 
 @Component({
   selector: 'app-reservation',
   standalone: true,
-  providers: [AuthService, ReservationService],
+  providers: [AuthService, ReservationService, ProductsService, EventsService],
   imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss']
@@ -20,11 +22,15 @@ export class ReservationComponent implements OnInit {
   showEventList: boolean = false;
   formError: boolean = false;
   formErrorMessage: string = '';
+  products: any[] = [];
+  events: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private reservationService: ReservationService,
+    private productsService: ProductsService,
+    private eventsService: EventsService,
     private router: Router
   ) {
     if (!this.authService.isLoggedIn()) {
@@ -44,17 +50,33 @@ export class ReservationComponent implements OnInit {
     this.reservationForm.get('type')?.valueChanges.subscribe(value => {
       this.toggleProductList(value);
     });
+
+    this.loadProducts();
+    this.loadEvents();
   }
 
   toggleProductList(type: string) {
-    this.showProductList = type === 'producto';
-    this.showEventList = type === 'evento';
+    this.showProductList = type === 'product';
+    this.showEventList = type === 'event';
+  }
+
+  loadProducts() {
+    this.productsService.getProducts().subscribe((products: any) => {
+      this.products = products;
+    });
+  }
+
+  loadEvents() {
+    this.eventsService.getEvents().subscribe((events: any) => {
+      this.events = events;
+    });
   }
 
   onSubmit() {
     if (this.reservationForm.valid) {
       this.authService.getUserId().subscribe(userId => {
         if (userId) {
+          console.log(userId)
           const reservationData = { ...this.reservationForm.value, user_id: userId };
           this.reservationService.createReservation(reservationData).subscribe(
             response => {
@@ -75,7 +97,4 @@ export class ReservationComponent implements OnInit {
       });
     }
   }
-
-
-
 }
