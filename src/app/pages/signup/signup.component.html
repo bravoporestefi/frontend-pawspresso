@@ -1,30 +1,50 @@
-<div>
-
-    <div alt="imagen">
-        <img src="assets/signup.jpg" class="img-fluid">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="d-flex shadow-sm border-0 rounded-lg signup-container">
+          <div alt="imagen" class="d-none d-md-block">
+            <img src="assets/signup.jpg" class="img-fluid signup-image" alt="Signup Image">
+          </div>
+          <div alt="formulario" class="w-100 p-4 signup-form" style="min-width: 20em;">
+            <h3 class="card-title text-center mb-4">Registro</h3>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <div class="form-floating mb-3">
+                <input type="text" id="name" formControlName="name" class="form-control" placeholder="Nombre" required>
+                <label for="name">Nombre</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" id="last_name" formControlName="last_name" class="form-control" placeholder="Apellido" required>
+                <label for="last_name">Apellido</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="tel" id="phone_number" formControlName="phone_number" class="form-control" placeholder="Teléfono" required>
+                <label for="phone_number">Teléfono</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Correo Electrónico" required>
+                <label for="email">Correo Electrónico</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña" required>
+                <label for="password">Contraseña</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" id="password_confirmation" formControlName="password_confirmation" class="form-control" placeholder="Confirmar Contraseña" required>
+                <label for="password_confirmation">Confirmar Contraseña</label>
+              </div>
+              @if (passwordMismatch) {
+                  <div class="text-danger mb-3">Las contraseñas no coinciden</div>
+              }
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="signupForm.invalid || passwordMismatch">Registrar</button>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              ¿Ya tienes una cuenta? <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div alt="formulario">
-        <form action="/register" method="post">
-            <label for="first_name">Nombre:</label><br>
-            <input type="text" id="first_name" name="first_name" required><br><br>
-            
-            <label for="last_name">Apellido:</label><br>
-            <input type="text" id="last_name" name="last_name" required><br><br>
-            
-            <label for="phone">Teléfono:</label><br>
-            <input type="tel" id="phone" name="phone" required><br><br>
-            
-            <label for="email">Correo Electrónico:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="password">Contraseña:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
-            
-            <button type="submit">Registrar</button>
-          </form>
-          
-        <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
-    </div>
-
-</div>
+  </div>
+  
