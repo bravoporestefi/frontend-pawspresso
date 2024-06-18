@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,5 +12,10 @@ export class ProductsService {
   constructor() { }
   getProducts() {
     return this.http.get(`${this.url}/products`);
+  }
+  deleteProduct(productId: number) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.url}/products/${productId}`, { headers });
   }
 }

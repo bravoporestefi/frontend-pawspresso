@@ -31,7 +31,12 @@ export class AuthService {
       })
     );
   }
-
+  isAdmin(): Observable<boolean> {
+    return this.getUser().pipe(
+      map(user => !!user?.is_admin),
+      catchError(() => of(false))
+    );
+  }
   getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     if (!token) {
